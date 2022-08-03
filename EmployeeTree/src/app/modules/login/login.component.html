@@ -1,21 +1,30 @@
-<!-- <h1>Login</h1>
-<form [formGroup]="loginForm">
-    <input type="text" placeholder="Username" formControlName="username">
-    <br>
-    <input type="password" placeholder="" formControlName="password">
-    <br>
-    <button type="submit" (click)="login()">Log In</button>
-</form> -->
-
-<body>
+ <body>
     <div class="palette">
-
+        <h1 class="title">EmployeeTree</h1>
     </div>
     <div class="content">
         <mat-card class="card">
             <mat-card-title>Login</mat-card-title>
             <mat-card-content>
-              
+                <form class="form">
+                    <mat-form-field class="username" appearance="fill">
+                      <mat-label>Username</mat-label>
+                      <input [(ngModel)]="username" type="text" matInput [formControl]="loginForm">
+                      <mat-error *ngIf="loginForm.hasError('required')">
+                        Username is <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field class="password" appearance="fill">
+                        <mat-label>Password</mat-label>
+                        <input [(ngModel)]="password" type="password" matInput [formControl]="loginForm">
+                        <mat-error *ngIf="loginForm.hasError('required')">
+                          Username is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                  </form>
+                  <br>
+                  <button mat-raised-button (click)="login()">Log In</button>
             </mat-card-content>
 
           </mat-card>

@@ -10,10 +10,10 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm = new FormGroup({
-    username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required)
-  });
+  username : any
+  password : any
+  loginForm = new FormControl('', [Validators.required]);
+  
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -24,8 +24,8 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    let username = this.loginForm.get('username')?.value;
-    let password = this.loginForm.get('password')?.value;
+    let username = this.username;
+    let password = this.password;
     this.authenticationService.login(username, password).subscribe((res) => {
       if(res)
         this.router.navigateByUrl("home")

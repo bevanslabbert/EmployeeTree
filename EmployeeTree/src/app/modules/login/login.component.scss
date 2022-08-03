@@ -31,3 +31,34 @@ body {
     width: 60%;
     // margin-left: 20%;
 }
+
+.title {
+    position: absolute;
+    bottom: 30vh;
+    color: white;
+    font-size: 3.5vw;
+    width: 100%;
+    text-align : center;
+}
+
+mat-card-title {
+    font-size: 3vw;
+}
+
+.username {
+    margin-top: 10vh;
+}
+
+.password {
+    margin-top: 10vh;
+}
+
+input {
+    background-color: var(--grey);
+}
+
+button {
+    background-color: var(--blue);
+    color: white;
+    margin-top: 10vh;
+}
