@@ -1,0 +1,33 @@
+body {
+    // height: 100vh;
+    // width: 100vw;
+    display: inline-flex;
+}
+
+.palette {
+    width: 30%;
+    height: 100%;
+    position: fixed;
+    left:0;
+    top:0;
+    background-color: var(--blue) ;
+}
+
+.content{
+    width: 70%;
+    height: 100%;
+    position: fixed;
+    right:0;
+    top:0;
+    background-color: var(--grey) ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    padding: 6vh;
+    height: 70%;
+    width: 60%;
+    // margin-left: 20%;
+}
