@@ -1,7 +1,9 @@
 <div class="header">
     <div class="title">EmployeeTree</div>
-    <div class="element">Home</div>
-    <div class="element">Hierarchy</div>
-    <div class="element">Manage Schedule</div>
-    <div class="element">Log Out</div>
+    <div class="nav">
+        <div id="home" (click)="home()" class="element">Home</div>
+        <div id="hierarchy" (click)="hierarchy()" class="element">Hierarchy</div>
+        <div id="schedules" (click)="schedules()" class="element">Schedules</div>
+        <div id="logout" (click)="logout()" class="element">Log Out</div>
+    </div>
 </div>

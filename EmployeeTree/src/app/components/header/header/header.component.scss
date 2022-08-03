@@ -1,0 +1,49 @@
+.header{
+    width: 100%;
+    display: flex;
+    height: 10%;
+    background-color: white;
+}
+
+.title{
+    width: 25%;
+    color: var(--blue);
+    font-weight: bold;
+    margin-left: 20px;
+    // color: white;
+    // background-color: var(--blue);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 1.6em;
+}
+
+.nav {
+    display: flex;
+    width: 75%;
+    margin-left: 10%;
+}
+
+.element{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 0.8em;
+    margin-left: 5%;
+    width: 8em;
+    // font-weight: bold;
+}
+
+.element:hover {
+    // color: white;
+    // background-color: var(--blue);
+    transition: 0.1s;
+    font-weight: bold;
+    border-bottom: 3px solid var(--blue);
+}
+
+.selected {
+    background-color: var(--blue);
+    color: white;
+    font-weight: bold;
+}

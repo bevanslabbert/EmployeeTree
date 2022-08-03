@@ -11,7 +11,17 @@ const routes: Routes = [
   {
     path: 'home', 
     loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule),
-    // canActivate: [AuthenticationGuardGuard]
+    canActivate: [AuthenticationGuardGuard]
+  },
+  {
+    path: 'hierarchy', 
+    loadChildren: () => import('./modules/hierarchy/hierarchy.module').then(m => m.HierarchyModule),
+    canActivate: [AuthenticationGuardGuard]
+  },
+  {
+    path: 'schedules', 
+    loadChildren: () => import('./modules/schedules/schedules.module').then(m => m.SchedulesModule),
+    canActivate: [AuthenticationGuardGuard]
   }
 ];
 
