@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderModule } from './components/header/header.module';
 import { FooterModule } from './components/footer/footer.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FooterModule } from './components/footer/footer.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     HeaderModule,
-    FooterModule
+    FooterModule,
+    HttpClientModule
   ],
   exports: [
     RouterModule

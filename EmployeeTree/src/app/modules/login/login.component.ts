@@ -23,16 +23,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login(): void {
+  async login() {
     let username = this.username;
     let password = this.password;
-    this.authenticationService.login(username, password).subscribe((res) => {
-      if(res)
-        this.router.navigateByUrl("home")
-      else {
-        //error
-      }
-    });
+    this.authenticationService.login(username, password)
   }
 
 }
