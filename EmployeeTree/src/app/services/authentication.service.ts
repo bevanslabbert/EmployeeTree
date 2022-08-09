@@ -21,7 +21,7 @@ export class AuthenticationService {
     // const headers = new HttpHeaders()
     // .set('Content-Type', 'application/json');
 
-    this.http.post('http://127.0.0.1:8080/api/login', {
+    this.http.post('http://127.0.0.1:3000/api/login', {
       'username' : username,
       'password' : password 
     }).pipe(take(5)).subscribe((username) =>  {

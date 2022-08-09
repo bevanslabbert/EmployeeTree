@@ -33,6 +33,31 @@ var RegisteredUsersSchema = new Schema({
 
 var model = mongo.model('registered_users', RegisteredUsersSchema, 'registered_users');
 
+
+var EmployeesSchema = new Schema({
+    id: { type: String },
+    title: { type: String },
+    reports_to: { type: String }
+}, { versionKey: false});
+
+var employeesModel = mongo.model('employees', EmployeesSchema, 'employees');
+
+
+var SchedulesSchema = new Schema({
+    id: { type: String },
+    schedule: {type : Schema.Types.Mixed}
+    // {
+    //     start_time : { type: String },
+    //     end_time : { type : String },
+    //     title : { type : String },
+    //     description : { type : String }
+
+    // },
+}, { versionKey: false});
+
+var schedulesModel = mongo.model('schedules', SchedulesSchema, 'schedules');
+
+
 // app.post('/api/SaveUser', function(req,res) {
 //     var mod = new model(req.body);
 
@@ -69,6 +94,12 @@ app.post('/api/login', (req, res, next) =>  {
     })
 })
 
-app.listen(8080, (req,res,next) =>  {
-    console.log('Listening on port 8080')
+
+app.get('/api/users', (req, res, next)  =>  {
+    model.findOne
+})
+
+
+app.listen(3000, (req,res,next) =>  {
+    console.log('Listening on port 3000')
 })
