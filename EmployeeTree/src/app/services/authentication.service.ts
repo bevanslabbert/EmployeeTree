@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, take, tap } from 'rxjs';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+// import * as bcrypt from 'bcrypt';
 
 @Injectable({
   providedIn: 'root'
@@ -18,38 +19,26 @@ export class AuthenticationService {
 
   login(username : string, password : string){
 
-    // const headers = new HttpHeaders()
-    // .set('Content-Type', 'application/json');
-
     this.http.post('http://127.0.0.1:3000/api/login', {
       'username' : username,
       'password' : password 
-    }).pipe(take(5)).subscribe((username) =>  {
-      this.user = username
-      console.log(this.user)
-
-      if(this.user != null)
+    })
+    .pipe(take(5)).subscribe((user) =>  {
+      this.user = user
+      
+      if(this.user.success)
       {
-        if(password == this.user.password)
-        {
-          this.router.navigateByUrl("home")
-          localStorage.setItem("token", "token-from-server")
-        }
-        else
-        alert("Invalid credentials")
+        this.router.navigateByUrl("home")
+        localStorage.setItem("token", "token-from-server")
+
+        //Fetch all employees that work for this.user
+        
+        console.log(this.user)
       }
       else
         alert("Invalid credentials")
-
     })
   }
-    // if(username == this.username && password == this.password) {
-    //   localStorage.setItem("token", "token-from-server")
-    //   return of(true)
-    // }
-    // else {
-    //   return of(false)
-    // }
 
   logout() : void {
     localStorage.removeItem("token")

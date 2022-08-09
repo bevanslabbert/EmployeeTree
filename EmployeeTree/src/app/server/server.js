@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 var mongo = require('mongoose');
+var bcrypt = require('bcrypt');
 
 var db = mongo.connect('mongodb+srv://bevanslabbert:qk7XtDzywmAOBk82@database.e5s3d.mongodb.net/?retryWrites=true&w=majority', function(err, response){
     if(err){console.log(err);}
@@ -83,20 +84,42 @@ app.post('/api/login', (req, res, next) =>  {
     model.findOne({username : req.body.username}, 'username password first_name surname id').exec((err, resp)   =>  {
         if(err) console.log(err);
         if(resp != null) {
-            console.log('valid')
-            console.log(resp)
-            let resObj  = resp
-            res.json(resObj)
+            bcrypt.compare(req.body.password, resp.password, (err, same) =>  {
+                if(same) {
+                    console.log('valid')
+                    console.log(resp)
+                    let resObj = {
+                        success : true,
+                        name : resp.first_name,
+                        surname : resp.surname, 
+                        username : resp.username, 
+                        id : resp.id};
+                    
+                    res.json(resObj)
+                }
+                else
+                {
+                    console.log('invalid')
+                    let resObj  = {success : false}
+                    res.json(resObj)
+                }
+            })
         }
-        else
-            res.json(null)   
-            
+        else {
+            console.log('invalid')
+            let resObj  = {success : false}
+            res.json(resObj)
+        }            
     })
 })
 
+//Get all employees that work for req.id
+app.get('api/employees', (req, res, next)   =>  {
+
+})
 
 app.get('/api/users', (req, res, next)  =>  {
-    model.findOne
+    // model.findOne
 })
 
 
