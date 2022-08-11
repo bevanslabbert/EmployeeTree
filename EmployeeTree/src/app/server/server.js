@@ -4,6 +4,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var mongo = require('mongoose');
 var bcrypt = require('bcrypt');
+const { json } = require('body-parser');
 
 var db = mongo.connect('mongodb+srv://bevanslabbert:qk7XtDzywmAOBk82@database.e5s3d.mongodb.net/?retryWrites=true&w=majority', function(err, response){
     if(err){console.log(err);}
@@ -114,14 +115,17 @@ app.post('/api/login', (req, res, next) =>  {
 })
 
 //Get all employees that work for req.id
-app.get('api/employees', (req, res, next)   =>  {
-
+app.post('/api/employees', (req, res, next)   =>  {
+    
+    employeesModel.find({reports_to : req.body.id}, 'username password first_name surname id').exec((err, resp)   =>  {
+        res.json(resp);
+        console.log(resp)
+    });
 })
 
 app.get('/api/users', (req, res, next)  =>  {
     // model.findOne
 })
-
 
 app.listen(3000, (req,res,next) =>  {
     console.log('Listening on port 3000')

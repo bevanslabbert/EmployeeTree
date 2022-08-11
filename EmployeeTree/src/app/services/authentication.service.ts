@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, take, tap } from 'rxjs';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { CommonService } from './common.service';
 // import * as bcrypt from 'bcrypt';
 
 @Injectable({
@@ -10,9 +11,11 @@ import { Router } from '@angular/router';
 export class AuthenticationService {
 
   user  : any
+  employees : any[] = []
   constructor(
     private http : HttpClient,
-    private router : Router
+    private router : Router,
+    private commonService : CommonService
   ) { 
     localStorage.removeItem("token")
   }
@@ -23,7 +26,7 @@ export class AuthenticationService {
       'username' : username,
       'password' : password 
     })
-    .pipe(take(5)).subscribe((user) =>  {
+    .pipe().subscribe((user) =>  {
       this.user = user
       
       if(this.user.success)
@@ -31,9 +34,12 @@ export class AuthenticationService {
         this.router.navigateByUrl("home")
         localStorage.setItem("token", "token-from-server")
 
-        //Fetch all employees that work for this.user
-        
+        this.commonService.setUser(this.user)
         console.log(this.user)
+        this.user = null
+
+        //Fetch all employees that work for this.user
+        this.commonService.getEmployees()
       }
       else
         alert("Invalid credentials")
