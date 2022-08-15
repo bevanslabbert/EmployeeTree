@@ -16,25 +16,89 @@ export class CommonService {
     ) { }
 
   getEmployees() {
+    //Get employees under logged in user
     this.http.post('http://127.0.0.1:3000/api/employees',
     {
       'id' : this.user.id
     })
-    .pipe().subscribe((employees) =>  {
-      this.employees = employees
-      console.log(this.employees)
+    .subscribe((employees) =>  {
+      
+      //Add to children array
+      this.user.children = employees
 
-      this.http.post('http://127.0.0.1:3000/api/schedules',
+      //Get children recursively
+      this.getChildren(this.user.children)
+      console.log(this.user)
+      
+      //get schedule of logged in user
+      this.http.post('http://127.0.0.1:3000/api/schedulesById',
       {
-        'employees' : this.employees
+        'id' : this.user.id
       })
-      .pipe().subscribe((schedules) =>  {
-        this.schedules = schedules
-        console.log(this.schedules)
+      .subscribe((schedules) =>  {
+        this.user.schedules = schedules
       })
     })
   }
 
+  //get children of array and save it in children array of employee
+  getChildren(u : any) {
+
+    //Get schedules of children
+    this.getSchedules(u)
+
+    //get details of employees
+    this.getEmployeeDetails(u)
+
+    u.forEach((e : any) =>  {
+      this.http.post('http://127.0.0.1:3000/api/employees',
+      {
+        'id' : e.id
+      })
+      .subscribe((employees) =>  {
+
+        e.children = employees
+
+        this.getChildren(e.children)
+        // console.log("CHILDREN OF " + e.id + ": ", e.children)
+      })
+    })
+  }
+
+  //Get schedules of array of employees and save under respective employees
+  getSchedules(usersArray : any) {
+    // console.log(usersArray)
+
+    usersArray.forEach((e : any) =>  {
+
+      this.http.post('http://127.0.0.1:3000/api/schedulesById',
+      {
+        'id' : e.id
+      })
+      .subscribe((schedules) =>  {
+        e.schedules = schedules
+        // this.getSchedules(e.children)
+      })
+    })
+  }
+
+  //Retrieves user details
+  getEmployeeDetails(employeeArray : any) {
+    employeeArray.forEach((e : any) =>  {
+      this.http.post('http://127.0.0.1:3000/api/employeeDetails',
+      {
+        'id' : e.id
+      })
+      .subscribe((emp : any) =>  {
+        e.first_name = emp[0].first_name
+        e.surname = emp[0].surname
+        e.username = emp[0].username
+        // console.log(e)
+        // this.getSchedules(e.children)
+      })
+    })
+  }
+  
   setUser(u : any) {
     this.user = u
   }

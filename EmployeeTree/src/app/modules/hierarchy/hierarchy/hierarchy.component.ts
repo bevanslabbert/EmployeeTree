@@ -9,7 +9,12 @@ interface FoodNode {
 }
 
 interface EmployeeNode {
-
+  id: string,
+  schedules: any[],
+  children: EmployeeNode[],
+  first_name : string,
+  surname : string,
+  username : string
 }
 
 const TREE_DATA: FoodNode[] = [
@@ -37,22 +42,23 @@ const TREE_DATA: FoodNode[] = [
   templateUrl: './hierarchy.component.html',
   styleUrls: ['./hierarchy.component.scss']
 })
+
 export class HierarchyComponent implements OnInit {
 
-  treeControl = new NestedTreeControl<FoodNode>(node => node.children);
-  dataSource = new MatTreeNestedDataSource<FoodNode>()
+  treeControl = new NestedTreeControl<EmployeeNode>(node => node.children);
+  dataSource = new MatTreeNestedDataSource<EmployeeNode>()
   
   name : string = ""
   id : string   = ""
   
   constructor(private common : CommonService) {
-    this.dataSource.data = TREE_DATA;
+    this.dataSource.data = this.common.user.children;
   }
 
   hasChild = (_: number, node: FoodNode) => !!node.children && node.children.length > 0;
 
   ngOnInit(): void {
-    this.name = this.common.user.name + " " + this.common.user.surname
+    this.name = this.common.user.first_name + " " + this.common.user.surname
     this.id = this.common.user.id
   }
 

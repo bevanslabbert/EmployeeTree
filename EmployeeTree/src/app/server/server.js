@@ -35,7 +35,6 @@ var RegisteredUsersSchema = new Schema({
 
 var model = mongo.model('registered_users', RegisteredUsersSchema, 'registered_users');
 
-
 var EmployeesSchema = new Schema({
     id: { type: String },
     title: { type: String },
@@ -43,7 +42,6 @@ var EmployeesSchema = new Schema({
 }, { versionKey: false});
 
 var employeesModel = mongo.model('employees', EmployeesSchema, 'employees');
-
 
 var SchedulesSchema = new Schema({
     id: { type: String },
@@ -59,28 +57,6 @@ var SchedulesSchema = new Schema({
 
 var schedulesModel = mongo.model('schedules', SchedulesSchema, 'schedules');
 
-
-// app.post('/api/SaveUser', function(req,res) {
-//     var mod = new model(req.body);
-
-//     if(req.body.mode == 'Save'){
-//         mod.save(function(err,data) {
-//             mod.save(function(err, data) {
-//                 if(err) {
-//                     res.send(err);
-//                 }
-//                 else {
-//                     res.send({data:'Record has been inserted'});
-//                 }
-//             });
-//         });
-//     }
-//     else
-//     {
-        
-//     }
-// })
-
 app.post('/api/login', (req, res, next) =>  {
     model.findOne({username : req.body.username}, 'username password first_name surname id').exec((err, resp)   =>  {
         if(err) console.log(err);
@@ -91,7 +67,7 @@ app.post('/api/login', (req, res, next) =>  {
                     console.log(resp)
                     let resObj = {
                         success : true,
-                        name : resp.first_name,
+                        first_name : resp.first_name,
                         surname : resp.surname, 
                         username : resp.username, 
                         id : resp.id};
@@ -125,12 +101,16 @@ app.post('/api/employees', (req, res, next)   =>  {
 
 //Get schedules by ID
 app.post('/api/schedules', (req, res, next)  =>  {
-    console.log("SCHEDULES")
+    // console.log("SCHEDULES")
     let numEmployees = req.body.employees.length
     let count = 0
     var schedules = new Array()
     req.body.employees.forEach((e)   =>  {
         schedulesModel.find({id : e.id}, 'id schedule').exec((err, resp)   =>  {
+            // console.log(e)
+            // resp.name = e.name
+            // resp.surname = e.surname
+            // resp.username = e.username
             schedules.push(resp);
             count++;
 
@@ -140,7 +120,22 @@ app.post('/api/schedules', (req, res, next)  =>  {
             // console.log(resp);
         });
     })
+})
+
+app.post('/api/employeeDetails', (req, res, next)   =>  {
+    model.find({id : req.body.id}, 'username first_name surname').exec((err, resp)  =>  {
+        console.log(resp)
+        res.json(resp)
+    })
+})
+
+//Get all employees that work for req.id
+app.post('/api/schedulesById', (req, res, next)   =>  {
     
+    schedulesModel.find({id : req.body.id}, 'id schedule').exec((err, resp)   =>  {
+        res.json(resp)
+        // console.log(resp)
+    });
 })
 
 app.get('/api/users', (req, res, next)  =>  {
