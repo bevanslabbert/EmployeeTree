@@ -8,6 +8,10 @@ interface FoodNode {
   children?: FoodNode[];
 }
 
+interface EmployeeNode {
+
+}
+
 const TREE_DATA: FoodNode[] = [
   {
     name: 'Fruit',

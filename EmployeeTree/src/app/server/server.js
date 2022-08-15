@@ -123,6 +123,26 @@ app.post('/api/employees', (req, res, next)   =>  {
     });
 })
 
+//Get schedules by ID
+app.post('/api/schedules', (req, res, next)  =>  {
+    console.log("SCHEDULES")
+    let numEmployees = req.body.employees.length
+    let count = 0
+    var schedules = new Array()
+    req.body.employees.forEach((e)   =>  {
+        schedulesModel.find({id : e.id}, 'id schedule').exec((err, resp)   =>  {
+            schedules.push(resp);
+            count++;
+
+            if(count == numEmployees)
+                res.json(schedules)
+            // console.log(schedules)
+            // console.log(resp);
+        });
+    })
+    
+})
+
 app.get('/api/users', (req, res, next)  =>  {
     // model.findOne
 })

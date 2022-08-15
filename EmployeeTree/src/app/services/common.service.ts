@@ -9,6 +9,7 @@ export class CommonService {
 
   user : any
   employees : any
+  schedules : any
 
   constructor(
     private http: HttpClient
@@ -22,6 +23,15 @@ export class CommonService {
     .pipe().subscribe((employees) =>  {
       this.employees = employees
       console.log(this.employees)
+
+      this.http.post('http://127.0.0.1:3000/api/schedules',
+      {
+        'employees' : this.employees
+      })
+      .pipe().subscribe((schedules) =>  {
+        this.schedules = schedules
+        console.log(this.schedules)
+      })
     })
   }
 
