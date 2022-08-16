@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/services/common.service';
 import {NestedTreeControl} from '@angular/cdk/tree';
 import {MatTreeNestedDataSource} from '@angular/material/tree';
+import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
+
+var selectedNode : EmployeeNode = {} as EmployeeNode
 
 interface FoodNode {
   name: string;
@@ -47,19 +50,56 @@ export class HierarchyComponent implements OnInit {
 
   treeControl = new NestedTreeControl<EmployeeNode>(node => node.children);
   dataSource = new MatTreeNestedDataSource<EmployeeNode>()
-  
   name : string = ""
   id : string   = ""
+  selectedNode : EmployeeNode = this.common.user
   
   constructor(private common : CommonService) {
-    this.dataSource.data = this.common.user.children;
+    let superUser = [this.common.user]
+    // let superUser.children = this.common.user
+    this.dataSource.data = superUser
   }
 
   hasChild = (_: number, node: FoodNode) => !!node.children && node.children.length > 0;
 
   ngOnInit(): void {
-    this.name = this.common.user.first_name + " " + this.common.user.surname
+    this.name = this.selectedNode.first_name + " " + this.selectedNode.surname
     this.id = this.common.user.id
   }
 
+  select(node : EmployeeNode) : void{
+    this.selectedNode = node
+  }
+
+  // openBottomSheet(node : EmployeeNode): void {
+  //   // this.bottomSheet.setNode(node)
+  //   this._bottomSheet.open(BottomSheet);
+  // }
+
+  
 }
+
+// @Component({
+//   selector: 'bottom-sheet',
+//   templateUrl: 'bottom-sheet.html',
+// })
+
+// export class BottomSheet {
+  
+//   selectedNode : EmployeeNode = {} as EmployeeNode
+
+//   constructor(private _bottomSheetRef: MatBottomSheetRef<SheetComponent>) {}
+
+//   ngOnInit(): void {
+      
+//   }
+
+//   click(event: MouseEvent): void {
+//     this._bottomSheetRef.dismiss();
+//     event.preventDefault();
+//   }
+
+//   setNode(node : EmployeeNode) {
+//     this.selectedNode = node
+//   }
+// }

@@ -54,3 +54,85 @@ mat-tree {
     margin-left: 5%;
     background-color: var(--grey);
 }
+
+#content {
+    display: flex;
+    // justify-content: space-between;
+}
+
+#schedule {
+    width: 50%;;
+}
+#tree {
+    width : 50%;
+}
+
+mat-list-item {
+    display: block !important
+}
+
+#bold {
+    font-weight: bold;
+    width: 30%;
+}
+
+.node {
+    text-align: center;
+    line-height: 40px;;
+    padding: 10px;
+    justify-content: space-between;
+    border-radius: 5px;
+    button {
+        background-color: transparent;
+    }
+
+    mat-icon{
+        bottom : 0;
+        position: relatve;
+    }
+}
+.node button:hover {
+    cursor: pointer;
+    // background-color: transparent;
+    // border-bottom: 1px solid transparent;
+}
+
+.node:hover{
+    background-color: var(--darkgrey);
+    // color: white;
+    
+    cursor: pointer;
+    // mat-icon {
+    //     color: white;
+    //     transition: 0.3s;;
+
+    // }
+    transition: 0.8s;;
+}
+
+#text {
+    font-size: 0.6em;
+    line-height: 1.4em;
+}
+
+.schedule_item {
+    // display: flex;
+    // flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 0.6em;
+}
+
+
+.description {
+    font-size: 0.8em;
+    margin-left: 15px;
+    width: 30%;
+
+}
+
+.time {
+    font-size: 0.8em;
+    margin-left: 15px;
+    width: 30%;
+}
