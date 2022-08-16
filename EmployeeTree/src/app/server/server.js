@@ -145,3 +145,15 @@ app.get('/api/users', (req, res, next)  =>  {
 app.listen(3000, (req,res,next) =>  {
     console.log('Listening on port 3000')
 })
+
+// model.aggregate([{
+//     $lookup: {
+//         from: "employees",
+//         localField: "id",
+//         foreignField: "id",
+//         as: "users"
+//     }
+// }]).exec(function(err, users) {
+//     console.log(users)
+//     console.log(users[0].users)
+// })
