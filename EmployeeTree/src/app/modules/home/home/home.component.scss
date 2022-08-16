@@ -2,6 +2,8 @@ body {
     // height: 100%;
     // width: 100%;
     background-color: var(--grey);
+    -webkit-animation: fadeInUp 500ms ease-in-out; /* Chrome, Safari, Opera */
+    animation: fadeInUp 500ms ease-in-out;
 }
 
 .title {
@@ -16,4 +18,28 @@ body {
 
 .blue-text {
     color: var(--blue);
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+    }
+}
+
+/* Standard syntax */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

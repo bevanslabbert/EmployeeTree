@@ -6,11 +6,6 @@ import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet'
 
 var selectedNode : EmployeeNode = {} as EmployeeNode
 
-interface FoodNode {
-  name: string;
-  children?: FoodNode[];
-}
-
 interface EmployeeNode {
   id: string,
   schedules: any[],
@@ -19,26 +14,6 @@ interface EmployeeNode {
   surname : string,
   username : string
 }
-
-const TREE_DATA: FoodNode[] = [
-  {
-    name: 'Fruit',
-    children: [{name: 'Apple'}, {name: 'Banana'}, {name: 'Fruit loops'}],
-  },
-  {
-    name: 'Vegetables',
-    children: [
-      {
-        name: 'Green',
-        children: [{name: 'Broccoli'}, {name: 'Brussels sprouts'}],
-      },
-      {
-        name: 'Orange',
-        children: [{name: 'Pumpkins'}, {name: 'Carrots'}],
-      },
-    ],
-  },
-];
 
 @Component({
   selector: 'app-hierarchy',
@@ -60,7 +35,7 @@ export class HierarchyComponent implements OnInit {
     this.dataSource.data = superUser
   }
 
-  hasChild = (_: number, node: FoodNode) => !!node.children && node.children.length > 0;
+  hasChild = (_: number, node: EmployeeNode) => !!node.children && node.children.length > 0;
 
   ngOnInit(): void {
     this.name = this.selectedNode.first_name + " " + this.selectedNode.surname

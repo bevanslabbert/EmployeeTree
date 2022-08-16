@@ -2,18 +2,116 @@ body {
     // height: 100%;
     // width: 100%;
     background-color: var(--grey);
+    -webkit-animation: fadeInUp 500ms ease-in-out; /* Chrome, Safari, Opera */
+    animation: fadeInUp 500ms ease-in-out;
 }
 
 .title {
     width: 70%;
-    height: 70%;
+    // height: 70%;
     font-size: 5em;
     line-height: 1em;
     font-weight: bolder;
-    padding-top: 10%;
+    padding-top: 5%;
     margin-left: 10%;
 }
 
 .blue-text {
     color: var(--blue);
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+    }
+}
+
+/* Standard syntax */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.example-tree-invisible {
+    display: none;
+}
+  
+.example-tree ul,
+.example-tree li {
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style-type: none;
+}
+
+/*
+* This padding sets alignment of the nested nodes.
+*/
+.example-tree .mat-nested-tree-node div[role=group] {
+    padding-left: 40px;
+}
+
+/*
+* Padding for leaf nodes.
+* Leaf nodes need to have padding so as to align with other non-leaf nodes
+* under the same parent.
+*/
+.example-tree div[role=group] > .mat-tree-node {
+    padding-left: 40px;
+}
+
+button { 
+    background-color: var(--grey);
+    outline: none;
+    border: none;
+}
+
+mat-tree {
+    margin-left: 10%;
+    background-color: var(--grey);
+}
+
+.node {
+    text-align: center;
+    line-height: 40px;;
+    padding: 10px;
+    justify-content: space-between;
+    border-radius: 5px;
+    button {
+        background-color: transparent;
+    }
+
+    mat-icon{
+        bottom : 0;
+        position: relatve;
+    }
+}
+.node button:hover {
+    cursor: pointer;
+    // background-color: transparent;
+    // border-bottom: 1px solid transparent;
+}
+
+.node:hover{
+    background-color: var(--darkgrey);
+    // color: white;
+    
+    cursor: pointer;
+    // mat-icon {
+    //     color: white;
+    //     transition: 0.3s;;
+
+    // }
+    transition: 0.8s;;
 }

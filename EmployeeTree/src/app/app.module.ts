@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderModule } from './components/header/header.module';
 import { FooterModule } from './components/footer/footer.module';
 import { HttpClientModule } from '@angular/common/http';
+import { DialogModule } from './components/dialog/dialog.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     HeaderModule,
     FooterModule,
+    DialogModule,
     HttpClientModule
   ],
   exports: [

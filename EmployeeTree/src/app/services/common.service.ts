@@ -98,6 +98,10 @@ export class CommonService {
       })
     })
   }
+
+  setDialogEmployee(node : any) {
+    
+  }
   
   setUser(u : any) {
     this.user = u

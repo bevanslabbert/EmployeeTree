@@ -1,0 +1,57 @@
+h1 {
+    width: 500px;
+    font-weight: bolder;
+    color: var(--blue);
+}
+
+h3 {
+    font-weight: bolder;
+    color: var(--blue);
+    margin-bottom: 10px;
+}
+
+h4 {
+    color: var(--blue);
+}
+
+h1,h4 {
+    margin: 0px;
+}
+
+.item {
+    margin-top:20px;
+    // border-bottom: 1px solid var(--blue);
+    padding-bottom: 20px;
+}
+
+input {
+    width: 80%;
+    border:none;
+    outline : none;
+    border-radius: 20px;
+    background-color: var(--grey);
+    height: 2em;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
+label {
+    padding-left: 10px;
+    color: var(--blue);
+}
+
+.delete {
+    margin-top: 10px;
+    background-color: var(--red);
+    color: white;
+}
+
+.add {
+    margin-top: 10px;
+    background-color: var(--blue);
+    color: white;
+}
+
+mat-icon {
+    margin-right: 5px;
+}

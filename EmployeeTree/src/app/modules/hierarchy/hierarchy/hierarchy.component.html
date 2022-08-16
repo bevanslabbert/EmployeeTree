@@ -1,9 +1,14 @@
 <!-- <app-header></app-header> -->
 <body>
+  <div class="titles">
     <div class="title">
         {{selectedNode.first_name}} {{selectedNode.surname}}
         <p>#{{selectedNode.id}}</p>
     </div>
+    <div class="schedule_title">
+      Schedule
+    </div>
+  </div>
     <div id = "content">
       <div id="tree">
         <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
@@ -39,6 +44,7 @@
             </mat-nested-tree-node>
           </mat-tree>
         </div>
+        
           <div id = "schedule">
             <mat-list role="list">
               <span class="schedule_item">

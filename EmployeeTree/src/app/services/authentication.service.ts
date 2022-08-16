@@ -31,8 +31,7 @@ export class AuthenticationService {
       
       if(this.user.success)
       {
-        this.router.navigateByUrl("home")
-        localStorage.setItem("token", "token-from-server")
+        localStorage.setItem("token", this.user.username)
 
         this.commonService.setUser(this.user)
         console.log(this.user)
@@ -40,6 +39,7 @@ export class AuthenticationService {
 
         //Fetch all employees that work for this.user
         this.commonService.getEmployees()
+        this.router.navigateByUrl("home")
       }
       else
         alert("Invalid credentials")
@@ -51,6 +51,10 @@ export class AuthenticationService {
   }
 
   userIsLoggedIn() : boolean {
-    return (localStorage.getItem("token") != null)
+    if(localStorage.getItem("token") !== null) {
+      return true
+    }
+
+      return false
   }
 }

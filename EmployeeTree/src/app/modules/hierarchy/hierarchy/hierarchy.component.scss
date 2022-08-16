@@ -1,5 +1,7 @@
 body {
     background-color: var(--grey);
+    -webkit-animation: fadeInUp 500ms ease-in-out; /* Chrome, Safari, Opera */
+    animation: fadeInUp 500ms ease-in-out;
 }
 
 .title {
@@ -9,6 +11,23 @@ body {
     margin-left: 5%;
     padding-top: 5%;
     color: var(--blue);
+    width: 50%;
+}
+
+.titles {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.schedule_title{
+    font-size: 4em;
+    line-height: 1em;
+    font-weight: bolder;
+    // margin-left: 20%;
+    padding-top: 5%;
+    color: var(--blue);
+    width: 50%;
 }
 
 p {
@@ -61,10 +80,12 @@ mat-tree {
 }
 
 #schedule {
-    width: 50%;;
+    width: 50%;
+    background-color: var(--grey);
 }
 #tree {
     width : 50%;
+    background-color: var(--grey);
 }
 
 mat-list-item {
@@ -135,4 +156,28 @@ mat-list-item {
     font-size: 0.8em;
     margin-left: 15px;
     width: 30%;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+    }
+}
+
+/* Standard syntax */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

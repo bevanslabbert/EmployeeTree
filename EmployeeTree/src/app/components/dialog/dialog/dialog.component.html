@@ -1,0 +1,13 @@
+<h1>{{employee.first_name}} {{employee.surname}}</h1>
+<mat-card class="item" *ngFor="let s of employee.schedules[0].schedule">
+    <h3>{{s.title}} - {{s.description}}</h3>
+    <!-- <h4></h4> -->
+    <label class="label">Start Time</label><br>
+    <input value="{{s.start_time}}"><br>
+    <label class="label">End Time</label><br>
+    <input value="{{s.end_time}}"><br>
+    <mat-chip-list aria-label="Fish selection">
+        <mat-chip class="delete"><mat-icon>delete_outline</mat-icon>Delete Item</mat-chip>
+    </mat-chip-list>
+</mat-card>
+<mat-chip class="add"><mat-icon>add_box</mat-icon>New Item</mat-chip>
