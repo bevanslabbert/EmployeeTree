@@ -167,19 +167,21 @@ app.post('/api/addScheduleItem', (req, res, next)   =>  {
 //Remove schedule item from employee
 app.post('/api/removeScheduleItem', (req, res, next)    =>  {
     const filter = { id : req.body.id }
-    const item = { title : req.body.item.title, description : req.body.item.description, start_time : req.body.item.start_time, end_time : req.body.item.end_time}
+    const item = { 'title' : req.body.item.title, 'description' : req.body.item.description, 'start_time' : req.body.item.start_time, 'end_time' : req.body.item.end_time}
     console.log(item, filter)
     try {
         schedulesModel.findOneAndUpdate(
             filter,
             {
                 $pull: {
-                    'schedule': {
-                        $elemMatch: item
+                    "schedule": {
+                        "title" : req.body.item.title
+                        // $elemMatch: item
                     }
                 }
             },
             {
+                safe : true,
                 multi : false
             }
         )
