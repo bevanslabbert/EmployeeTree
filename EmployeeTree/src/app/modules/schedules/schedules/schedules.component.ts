@@ -63,6 +63,7 @@ export class SchedulesComponent implements OnInit {
 
   delete(s : any) {
     //Delete schedule item from database, pass employee id and new schedule as param
+    this.common.removeScheduleItem(this.selectedNode.id, s)
     
   }
 

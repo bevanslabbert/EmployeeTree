@@ -110,6 +110,17 @@ export class CommonService {
     })
   }
 
+  removeScheduleItem(id : string, item : any) : void {
+    this.http.post('http://127.0.0.1:3000/api/removeScheduleItem',
+    {
+      id: id,
+      item: item
+    })
+    .subscribe((res)  =>  {
+
+    })
+  }
+
   setDialogEmployee(node : any) {
     
   }
