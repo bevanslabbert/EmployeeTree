@@ -124,7 +124,7 @@ app.post('/api/schedules', (req, res, next)  =>  {
 
 app.post('/api/employeeDetails', (req, res, next)   =>  {
     model.find({id : req.body.id}, 'username first_name surname').exec((err, resp)  =>  {
-        console.log(resp)
+        // console.log(resp)
         res.json(resp)
     })
 })
@@ -136,6 +136,32 @@ app.post('/api/schedulesById', (req, res, next)   =>  {
         res.json(resp)
         // console.log(resp)
     });
+})
+
+//Update an employees schedule
+app.post('/api/addScheduleItem', (req, res, next)   =>  {
+    
+    const filter = { id : req.body.id};
+    const update = { 'title' : req.body.item.title, 'description' : req.body.item.description, 'start_time' : req.body.item.start_time, 'end_time' : req.body.item.end_time }
+    console.log(update)
+    try {
+        const updatedDoc = schedulesModel.findOneAndUpdate( 
+            filter,
+            { 
+                $push : {
+                    'schedule' : update
+                }
+            },
+            {new : true}, (err, result) =>  {
+                console.log(err)
+                console.log(result)
+            }
+        );
+        // console.log(updatedDoc)
+    }
+    catch (e) {
+        console.error(e)
+    }
 })
 
 app.get('/api/users', (req, res, next)  =>  {

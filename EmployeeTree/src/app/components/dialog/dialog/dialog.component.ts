@@ -1,5 +1,6 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CommonService } from 'src/app/services/common.service';
 
 interface EmployeeNode {
   id: string,
@@ -27,7 +28,7 @@ export class DialogComponent implements OnInit {
   id : string = ""
   schedule : any
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(private common : CommonService, @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit(): void {
@@ -71,9 +72,15 @@ export class DialogComponent implements OnInit {
   }
 
   updateScheduleItem() : void {
+    console.log(this.title, this.description, this.start_time, this.end_time)
     if(this.title == "" || this.description == "" || this.start_time == "" || this.end_time == "") {
+      
       //Error toast
-
+      alert("Fields cannot be empty")
+      this.title = this.schedule.title
+      this.description = this.schedule.description
+      this.start_time = this.schedule.start_time
+      this.end_time = this.schedule.end_time
       return
     }
 
@@ -88,7 +95,7 @@ export class DialogComponent implements OnInit {
       }
 
       //Add to employee.schedules on database passing this.id and item to common service
-      
+      this.common.addScheduleItem(this.id, item)
     }
     //Change item locally in employee object and in dataService.user
 

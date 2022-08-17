@@ -20,18 +20,35 @@
 <!-- </cdk-virtual-scroll-viewport> -->
 
 <!-- <h1>{{employee.first_name}} {{employee.surname}}</h1> -->
-    <mat-card class="item">
-        <label class="label">Title</label><br>
-        <h3><input [(ngModel)]="title" value="{{schedule.title}}" (change)="edit()"></h3> 
-        <label class="label">Description</label><br>
-        <input [(ngModel)]="description" value="{{schedule.description}}" (change)="edit()"><br>
-        <!-- <h4></h4> -->
-        <label class="label">Start Time</label><br>
-        <input [(ngModel)]="start_time" value="{{schedule.start_time}}" (change)="edit()"><br>
-        <label class="label">End Time</label><br>
-        <input [(ngModel)]="end_time" value="{{schedule.end_time}}" (change)="edit()"><br>
-        <mat-chip-list aria-label="Fish selection">
-            <!-- <mat-chip class="delete" (click)="delete()"><mat-icon>delete_outline</mat-icon>Delete Item</mat-chip> -->
-            <mat-chip class="update" (click)="updateScheduleItem()" [ngStyle]="{'background-color': (!scheduleChanged) ? 'var(--grey)' : 'var(--blue)'}">Apply Changes</mat-chip>
-        </mat-chip-list>
-    </mat-card>
+    
+<mat-card class="item" *ngIf="schedule!==null; else createItem">
+    <label class="label">Title</label><br>
+    <h3><input [(ngModel)]="title" value="{{schedule.title}}" (change)="edit()"></h3> 
+    <label class="label">Description</label><br>
+    <input [(ngModel)]="description" value="{{schedule.description}}" (change)="edit()"><br>
+    <!-- <h4></h4> -->
+    <label class="label">Start Time</label><br>
+    <input [(ngModel)]="start_time" value="{{schedule.start_time}}" (change)="edit()"><br>
+    <label class="label">End Time</label><br>
+    <input [(ngModel)]="end_time" value="{{schedule.end_time}}" (change)="edit()"><br>
+    <mat-chip-list aria-label="Fish selection">
+        <!-- <mat-chip class="delete" (click)="delete()"><mat-icon>delete_outline</mat-icon>Delete Item</mat-chip> -->
+        <mat-chip class="update" (click)="updateScheduleItem()" [ngStyle]="{'background-color': (!scheduleChanged) ? 'var(--grey)' : 'var(--blue)'}">Apply Changes</mat-chip>
+    </mat-chip-list>
+</mat-card>
+
+<ng-template #createItem>
+    <label class="label">Title</label><br>
+    <h3><input [(ngModel)]="title" value="" (change)="edit()"></h3> 
+    <label class="label">Description</label><br>
+    <input [(ngModel)]="description" value="" (change)="edit()"><br>
+    <!-- <h4></h4> -->
+    <label class="label">Start Time</label><br>
+    <input [(ngModel)]="start_time" value="" (change)="edit()"><br>
+    <label class="label">End Time</label><br>
+    <input [(ngModel)]="end_time" value="" (change)="edit()"><br>
+    <mat-chip-list aria-label="Fish selection">
+        <!-- <mat-chip class="delete" (click)="delete()"><mat-icon>delete_outline</mat-icon>Delete Item</mat-chip> -->
+        <mat-chip class="update" (click)="updateScheduleItem()" [ngStyle]="{'background-color': (!scheduleChanged) ? 'var(--grey)' : 'var(--blue)'}">Apply Changes</mat-chip>
+    </mat-chip-list>
+</ng-template>
