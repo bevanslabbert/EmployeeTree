@@ -9,6 +9,7 @@ import { DialogModule } from 'src/app/components/dialog/dialog.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTreeModule } from '@angular/material/tree';
 // import { DialogComponent } from 'src/app/components/dialog/dialog/dialog.component';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MatTreeModule } from '@angular/material/tree';
     SchedulesRoutingModule,
     MatDialogModule,
     DialogModule,
+    MatListModule
     // DialogComponent
   ],
   exports: [

@@ -16,33 +16,43 @@ interface EmployeeNode {
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent implements OnInit {
-
+  i : number = 0
   employee : EmployeeNode = {} as EmployeeNode
   scheduleChanged : boolean = false
-  scheduleItemChanged : boolean[]  = []
+  // scheduleItemChanged : boolean[]  = []
   description : string = ""
   title : string = ""
   start_time : string =""
   end_time : string = ""
+  id : string = ""
+  schedule : any
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit(): void {
     console.log(this.data)
-    this.employee = this.data.dataKey
-    console.log(this.title)
-    this.scheduleItemChanged = new Array<boolean>(this.employee.schedules[0].schedule.length).fill(false)
+    // this.employee = this.data.dataKey
+
+    this.schedule = this.data.dataKey
+    this.id = this.data.id
+    if(this.schedule != null) {
+      this.title = this.schedule.title
+      this.description = this.schedule.description
+      this.start_time = this.schedule.start_time
+      this.end_time = this.schedule.end_time
+    }
+    // console.log(this.title)
+    // this.scheduleItemChanged = new Array<boolean>(this.employee.schedules[0].schedule.length).fill(false)
   }
 
-  delete(i : number) : void {
-    console.log(i)
+  delete() : void {
     this.scheduleChanged = true
 
     //Remove element from scheduleItemChanged
-    this.scheduleItemChanged.splice(i,1)
+    // this.scheduleItemChanged.splice(this.i,1)
 
-    this.employee.schedules[0].schedule.splice(i,1)
+    this.employee.schedules[0].schedule.splice(this.i,1)
   }
 
   add() : void {
@@ -50,7 +60,7 @@ export class DialogComponent implements OnInit {
     this.scheduleChanged = true
 
     //Add new element to scheduleItem array
-    this.scheduleItemChanged.push(false)
+    // this.scheduleItemChanged.push(false)
 
     this.employee.schedules[0].schedule.push({
       "start_time"  : "",
@@ -60,13 +70,32 @@ export class DialogComponent implements OnInit {
     })
   }
 
-  updateScheduleItem(i : number) : void {
+  updateScheduleItem() : void {
+    if(this.title == "" || this.description == "" || this.start_time == "" || this.end_time == "") {
+      //Error toast
+
+      return
+    }
+
+    //Check if adding item or editing item
+    if(this.schedule == null) {
+      //Adding new item
+      let item = {
+        title: this.title,
+        description: this.description,
+        start_time: this.start_time,
+        end_time: this.end_time
+      }
+
+      //Add to employee.schedules on database passing this.id and item to common service
+      
+    }
     //Change item locally in employee object and in dataService.user
 
     //Commit schedule to database
 
     //Set to unedited
-    this.scheduleItemChanged[i] = false
+    // this.scheduleItemChanged[this.i] = false
   }
 
   updateSchedule() : void {
@@ -78,8 +107,9 @@ export class DialogComponent implements OnInit {
     this.scheduleChanged = false
   }
 
-  edit(i : number) : void {
-    console.log("Editing item: ", i)
+  edit() : void {
+    this.scheduleChanged = true
+    // console.log("Editing item: ", this.i)
   }
 
   //Add confirmation popup

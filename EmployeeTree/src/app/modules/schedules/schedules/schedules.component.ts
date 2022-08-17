@@ -4,6 +4,7 @@ import { DialogComponent } from 'src/app/components/dialog/dialog/dialog.compone
 import {NestedTreeControl} from '@angular/cdk/tree';
 import {MatTreeNestedDataSource} from '@angular/material/tree';
 import { CommonService } from 'src/app/services/common.service';
+import { scheduled } from 'rxjs';
 
 interface EmployeeNode {
   id: string,
@@ -20,12 +21,12 @@ interface EmployeeNode {
   styleUrls: ['./schedules.component.scss']
 })
 export class SchedulesComponent implements OnInit {
-  
+  selectedNode : EmployeeNode = {} as EmployeeNode
   treeControl = new NestedTreeControl<EmployeeNode>(node => node.children);
   dataSource = new MatTreeNestedDataSource<EmployeeNode>()
 
   hasChild = (_: number, node: EmployeeNode) => !!node.children && node.children.length > 0;
-
+  
   constructor(
     public dialog: MatDialog,
     private common : CommonService
@@ -37,18 +38,35 @@ export class SchedulesComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.selectedNode = this.common.user
     // this.openDialog(null)
   }
 
-  openDialog(node : any) {
+  select(node : EmployeeNode) : void {
+    this.selectedNode = node
+  }
+
+  openDialog(schedule : any) {
     const dialogRef = this.dialog.open(DialogComponent, {
       data: {
-        dataKey : node
+        dataKey : schedule,
+        id : this.selectedNode.id
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      //Fetch new results
+      
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  delete(s : any) {
+    //Delete schedule item from database, pass employee id and new schedule as param
+    
+  }
+
+  add() : void {
+    this.openDialog(null)
   }
 }

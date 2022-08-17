@@ -115,3 +115,91 @@ mat-tree {
     // }
     transition: 0.8s;;
 }
+
+#text {
+    font-size: 0.6em;
+    line-height: 1.4em;
+}
+
+.schedule_item {
+    // display: flex;
+    // flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 0.6em;
+}
+
+
+.description {
+    font-size: 0.8em;
+    margin-left: 15px;
+    width: 30%;
+
+}
+
+.time {
+    font-size: 0.8em;
+    margin-left: 15px;
+    width: 30%;
+}
+
+#content {
+    display: flex;
+    // justify-content: space-between;
+}
+
+#schedule {
+    width: 50%;
+    background-color: var(--grey);
+}
+#tree {
+    width : 50%;
+    background-color: var(--grey);
+}
+
+.schedule_item {
+    // display: flex;
+    // flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 0.6em;
+}
+
+// mat-list-item:hover {
+//     background-color: var(--darkgrey);
+//     transition: 0.3s;
+//     border-radius: 20px;
+// }
+
+#bold {
+    font-weight: bold;
+    width: 30%;
+}
+
+#delete {
+    color: var(--red);
+    border-radius: 5px;
+}
+
+#update {
+    color : var(--blue);
+}
+
+#update:hover {
+    font-weight: bold;
+    // transition: 1s;
+}
+
+#delete:hover {
+    font-weight: bold;
+    // transition: 1s;
+}
+
+#add {
+    background-color: var(--blue);
+    color: white;
+    border-radius: 5px;
+    width: 20%;
+    padding: 10px;
+    margin-left: 15px;
+}
