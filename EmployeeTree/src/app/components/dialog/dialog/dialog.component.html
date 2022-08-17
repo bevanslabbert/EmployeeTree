@@ -1,13 +1,20 @@
-<h1>{{employee.first_name}} {{employee.surname}}</h1>
-<mat-card class="item" *ngFor="let s of employee.schedules[0].schedule">
-    <h3>{{s.title}} - {{s.description}}</h3>
-    <!-- <h4></h4> -->
-    <label class="label">Start Time</label><br>
-    <input value="{{s.start_time}}"><br>
-    <label class="label">End Time</label><br>
-    <input value="{{s.end_time}}"><br>
-    <mat-chip-list aria-label="Fish selection">
-        <mat-chip class="delete"><mat-icon>delete_outline</mat-icon>Delete Item</mat-chip>
-    </mat-chip-list>
-</mat-card>
-<mat-chip class="add"><mat-icon>add_box</mat-icon>New Item</mat-chip>
+<cdk-virtual-scroll-viewport appendOnly itemSize="50" class="example-viewport">
+    <h1>{{employee.first_name}} {{employee.surname}}</h1>
+    <mat-card class="item" *ngFor="let s of employee.schedules[0].schedule; let i = index">
+        <label class="label">Title</label><br>
+        <h3><input  value="{{s.title}}" (change)="edit(i)"></h3> 
+        <label class="label">Description</label><br>
+        <input  value="{{s.description}}" (change)="edit(i)"><br>
+        <!-- <h4></h4> -->
+        <label class="label">Start Time</label><br>
+        <input  value="{{s.start_time}}" (change)="edit(i)"><br>
+        <label class="label">End Time</label><br>
+        <input  value="{{s.end_time}}" (change)="edit(i)"><br>
+        <mat-chip-list aria-label="Fish selection">
+            <mat-chip class="delete" (click)="delete(i)"><mat-icon>delete_outline</mat-icon>Delete Item</mat-chip>
+            <mat-chip class="update" (click)="updateScheduleItem(i)"><mat-icon>update</mat-icon>Apply Changes</mat-chip>
+        </mat-chip-list>
+    </mat-card>
+    <mat-chip class="add" (click)="add()"><mat-icon>add_box</mat-icon>New Item</mat-chip>
+    
+</cdk-virtual-scroll-viewport>

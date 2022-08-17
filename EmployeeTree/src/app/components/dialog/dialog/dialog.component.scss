@@ -1,5 +1,5 @@
 h1 {
-    width: 500px;
+    width: 600px;
     font-weight: bolder;
     color: var(--blue);
 }
@@ -38,6 +38,7 @@ input {
 label {
     padding-left: 10px;
     color: var(--blue);
+    font-weight: bold;
 }
 
 .delete {
@@ -54,4 +55,14 @@ label {
 
 mat-icon {
     margin-right: 5px;
+}
+
+.update {
+    background-color : var(--blue);
+    color: white;
+}
+
+.example-viewport {
+    height: 70vh;
+    width: 60vw;
 }
