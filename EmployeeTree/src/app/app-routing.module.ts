@@ -3,10 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthenticationGuardGuard } from './guards/authentication-guard.guard';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule),
-  // },
+  {
+    path: '',
+    loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule),
+  },
   {
     path: 'login', 
     loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule),
