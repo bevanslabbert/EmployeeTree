@@ -38,7 +38,7 @@
         <div id = "schedule">
           <mat-list role="list">
             <span class="schedule_item">
-              <mat-list-item role="listitem" *ngFor="let s of selectedNode.schedules[0].schedule"><p id="bold">{{s.title}}</p><p class="time">{{s.start_time}} - {{s.end_time}}</p><p class="description">{{s.description}}</p><mat-icon id="update" (click) = "openDialog(s)" >update</mat-icon><mat-icon id="delete" (click) = "delete(s)" >delete_forever</mat-icon></mat-list-item>
+              <mat-list-item role="listitem" *ngFor="let s of selectedNode.schedules[0].schedule; let i = index"><p id="bold">{{s.title}}</p><p class="time">{{s.start_time}} - {{s.end_time}}</p><p class="description">{{s.description}}</p><mat-icon id="update" (click) = "openDialog(s,i)" >update</mat-icon><mat-icon id="delete" (click) = "delete(s, i)" >delete_forever</mat-icon></mat-list-item>
             </span>
           </mat-list>
           <button id="add" (click)="add()" mat-raised-button>Add Item</button>

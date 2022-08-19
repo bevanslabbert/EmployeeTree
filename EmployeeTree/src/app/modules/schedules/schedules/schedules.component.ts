@@ -46,11 +46,13 @@ export class SchedulesComponent implements OnInit {
     this.selectedNode = node
   }
 
-  openDialog(schedule : any) {
+  openDialog(schedule : any, i : number) {
     const dialogRef = this.dialog.open(DialogComponent, {
       data: {
         dataKey : schedule,
-        id : this.selectedNode.id
+        id : this.selectedNode.id,
+        employee : this.selectedNode,
+        index : i
       }
     });
 
@@ -61,13 +63,14 @@ export class SchedulesComponent implements OnInit {
     });
   }
 
-  delete(s : any) {
+  delete(s : any, i : number) {
     //Delete schedule item from database, pass employee id and new schedule as param
-    this.common.removeScheduleItem(this.selectedNode.id, s)
+    this.selectedNode.schedules[0].schedule.splice(i,1)
+    this.common.updateSchedule(this.selectedNode)
     
   }
 
   add() : void {
-    this.openDialog(null)
+    this.openDialog(null, 0)
   }
 }

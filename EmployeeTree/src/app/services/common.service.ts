@@ -110,11 +110,11 @@ export class CommonService {
     })
   }
 
-  removeScheduleItem(id : string, item : any) : void {
-    this.http.post('http://127.0.0.1:3000/api/removeScheduleItem',
+  updateSchedule(node : any) : void {
+    console.log("Updating" + node.title)
+    this.http.post('http://127.0.0.1:3000/api/updateSchedule',
     {
-      id: id,
-      item: item
+      employee : node
     })
     .subscribe((res)  =>  {
 

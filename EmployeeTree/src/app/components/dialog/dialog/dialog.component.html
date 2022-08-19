@@ -33,7 +33,7 @@
     <input [(ngModel)]="end_time" value="{{schedule.end_time}}" (change)="edit()"><br>
     <mat-chip-list aria-label="Fish selection">
         <!-- <mat-chip class="delete" (click)="delete()"><mat-icon>delete_outline</mat-icon>Delete Item</mat-chip> -->
-        <mat-chip class="update" (click)="updateScheduleItem()" [ngStyle]="{'background-color': (!scheduleChanged) ? 'var(--grey)' : 'var(--blue)'}">Apply Changes</mat-chip>
+        <mat-chip class="update" (click)="updateSchedule()" [ngStyle]="{'background-color': (!scheduleChanged) ? 'var(--grey)' : 'var(--blue)'}">Apply Changes</mat-chip>
     </mat-chip-list>
 </mat-card>
 

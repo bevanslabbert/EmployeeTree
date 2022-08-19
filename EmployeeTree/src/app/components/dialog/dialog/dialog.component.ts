@@ -27,14 +27,15 @@ export class DialogComponent implements OnInit {
   end_time : string = ""
   id : string = ""
   schedule : any
+  index : number = 0
 
   constructor(private common : CommonService, @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit(): void {
     console.log(this.data)
-    // this.employee = this.data.dataKey
-
+    this.employee = this.data.employee
+    this.index = this.data.index
     this.schedule = this.data.dataKey
     this.id = this.data.id
     if(this.schedule != null) {
@@ -106,9 +107,20 @@ export class DialogComponent implements OnInit {
   }
 
   updateSchedule() : void {
+    alert("here")
+
     //Change locally in employee and in dataService.user
+    // this.employee.schedules[0].schedule.splice(this.index, 1)
+    console.log(this.index)
+    this.employee.schedules[0].schedule[this.index].title = this.title
+    this.employee.schedules[0].schedule[this.index].description = this.description
+    this.employee.schedules[0].schedule[this.index].start_time = this.start_time
+    this.employee.schedules[0].schedule[this.index].end_time = this.end_time
+
+    console.log(this.employee)
 
     //Commit schedule to database
+    this.common.updateSchedule(this.employee)
 
     //Set to unedited
     this.scheduleChanged = false

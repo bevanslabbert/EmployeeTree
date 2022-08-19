@@ -70,7 +70,8 @@ app.post('/api/login', (req, res, next) =>  {
                         first_name : resp.first_name,
                         surname : resp.surname, 
                         username : resp.username, 
-                        id : resp.id};
+                        id : resp.id
+                    };
                     
                     res.json(resObj)
                 }
@@ -165,30 +166,56 @@ app.post('/api/addScheduleItem', (req, res, next)   =>  {
 })
 
 //Remove schedule item from employee
-app.post('/api/removeScheduleItem', (req, res, next)    =>  {
-    const filter = { id : req.body.id }
-    const item = { 'title' : req.body.item.title, 'description' : req.body.item.description, 'start_time' : req.body.item.start_time, 'end_time' : req.body.item.end_time}
-    console.log(item, filter)
+app.post('/api/updateSchedule', (req, res, next)    =>  {
+    console.log(req.body)
+    const filter = { id : req.body.employee.id }
+    // const item = { 'title' : req.body.item.title, 'description' : req.body.item.description, 'start_time' : req.body.item.start_time, 'end_time' : req.body.item.end_time}
+    // console.log(item, filter)
+    // try {
+    //     const udpatedDoc = schedulesModel.findOneAndUpdate(
+    //         filter,
+    //         {
+    //             $pull: {
+    //                 schedule: {
+    //                     start_date : req.body.item.start_date
+    //                     // $elemMatch: item
+    //                 }
+    //             }
+    //         },
+    //         {
+    //             safe : true,
+    //             multi : true
+    //         }
+    //         ,(err, data)   =>  {
+    //             console.log(err, data)
+    //         })
+    // }
+    // catch (e) {
+    //     console.error(e)
+    // }
+    // let s = "schedules." + i
+
+    //Sincec mongoose doesn't allow for deleting element by index in array, and the elements are without unique identifiers, the entire field needs to be reset
     try {
-        schedulesModel.findOneAndUpdate(
-            filter,
-            {
-                $pull: {
-                    "schedule": {
-                        "title" : req.body.item.title
-                        // $elemMatch: item
-                    }
-                }
-            },
-            {
-                safe : true,
-                multi : false
-            }
-        )
+    schedulesModel.findOneAndUpdate(
+        filter,
+        { 
+            schedule : req.body.employee.schedules[0].schedule
+        }, ()   =>  {
+
+        })
     }
-    catch (e) {
-        console.error(e)
+    catch(e) {
+        console.log(e)
     }
+
+    // schedulesModel.findOne({id : req.body.id}, (err, doc)  => {
+    //     console.log(doc)
+    //     let i = req.body.index
+    //     console.log(doc.schedule[i])
+    //     doc.schedule.splice(i,1)
+    //     doc.save()
+    // })
 })
 
 app.get('/api/users', (req, res, next)  =>  {
