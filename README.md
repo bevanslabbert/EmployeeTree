@@ -2,9 +2,10 @@
 Recruiting project for Epi-Use
 
 For this implementation of EmployeeTree, users can manage schedules through a web application interface developed in Angular.
-The application uses express.js to fetch records stored in MongoDB.
-The angular service files send http post requests to the express.js file to create, update, delete or read records from the database.
+Angular service files send http post requests to an express.js file to create, update, delete or read records from the database.
 An authentication guard guarantees that users cannot access other pages of the application without logging in.
+The express.js file needs to be running for the application to be able to interact with the database.
+As specified in Setup Instructions, to run the express.js file and the application, one runs the command `npm run start` which concurrently executes the express.js file and `ng serve`.
 
 # Functionality
 - Only registered users are allowed to access and use the application. Attempts to navigate to pages besides the login page will result in a redirection to the login page if the user is not logged in.
