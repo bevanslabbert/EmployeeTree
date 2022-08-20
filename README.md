@@ -68,6 +68,10 @@ Fields can not be empty when updating or creating an item.
 Confirmation is required when deleting an item.
 
 ![schedule_edit](https://github.com/bevanslabbert/EmployeeTree/blob/main/schedule_edit.png?raw=true)
+
+# Other
+- A js script was used to hash password and upload all the provided json data to seperate collections on the database.
+- A recursive function was implemented to build the hierarchy tree.
   
 
   
