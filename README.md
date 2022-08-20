@@ -17,4 +17,6 @@ For this implementation of EmployeeTree, users can manage schedules through a we
 # Architecture Diagram
 
 The project is developed according to the structure of an n-tier, model view controller architectural pattern.
-![architecture diagram](https://github.com/bevanslabbert/EmployeeTree/blob/main/Architecture Diagram.jpg?raw=true)
+![architecture diagram](https://github.com/bevanslabbert/EmployeeTree/blob/main/ArchitectureDiagram.jpg?raw=true)
+
+# Setup Instructions
