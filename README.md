@@ -57,6 +57,7 @@ On this page users can view the employees that report to them and their schedule
 
 Logged in users can edit the schedules of the employees that report to them, as well as their own. 
 Schedules can be updated, added or removed.
+As on the hierarchy page, clicking on a user shows their schedule on the right.
 
 ![schedules](https://github.com/bevanslabbert/EmployeeTree/blob/main/schedules.png?raw=true)
 
