@@ -61,7 +61,7 @@ Confirmation is required when deleting an item.
 
 This is what the user sees when they want to update or create a schedule item. Initially the "apply" button is inactive. It only becomes active when a change to the schedule item is detected.
 
-![schedules_edit](https://github.com/bevanslabbert/EmployeeTree/blob/main/schedules_edit.png?raw=true)
+![schedule_edit](https://github.com/bevanslabbert/EmployeeTree/blob/main/schedule_edit.png?raw=true)
   
 
   
