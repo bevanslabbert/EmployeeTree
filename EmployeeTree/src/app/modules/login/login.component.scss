@@ -62,3 +62,12 @@ button {
     color: white;
     margin-top: 10vh;
 }
+
+mat-spinner{
+    position: fixed;
+    width: 20%;
+    height: 20%;
+    left: 50%;
+    top: 40%;
+    z-index : 99;
+}

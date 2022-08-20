@@ -57,20 +57,33 @@ export class SchedulesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      //Fetch new results
-      
-      console.log(`Dialog result: ${result}`);
+      //Editted an  item
+      if(result == null)
+        return
+
+      if(i != -1) {
+        this.selectedNode.schedules[0].schedule[i] = result.data
+        alert("Item updated successfully")
+      }
+      else {
+        console.log(this.selectedNode.schedules[0].schedule)
+        this.selectedNode.schedules[0].schedule.push(result.data)
+        alert("Item created successfully")
+      }
+      console.log(result);
     });
   }
 
   delete(s : any, i : number) {
     //Delete schedule item from database, pass employee id and new schedule as param
-    this.selectedNode.schedules[0].schedule.splice(i,1)
-    this.common.updateSchedule(this.selectedNode)
+    if(confirm("Delete " + s.title + "?")) {
+      this.selectedNode.schedules[0].schedule.splice(i,1)
+      this.common.updateSchedule(this.selectedNode)
+    }
     
   }
 
   add() : void {
-    this.openDialog(null, 0)
+    this.openDialog(null, -1)
   }
 }

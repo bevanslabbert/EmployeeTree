@@ -26,7 +26,7 @@ export class AuthenticationService {
       'username' : username,
       'password' : password 
     })
-    .pipe().subscribe((user) =>  {
+    .subscribe((user) =>  {
       this.user = user
       
       if(this.user.success)

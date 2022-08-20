@@ -1,5 +1,5 @@
 import { Component, OnInit,Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CommonService } from 'src/app/services/common.service';
 
 interface EmployeeNode {
@@ -29,7 +29,7 @@ export class DialogComponent implements OnInit {
   schedule : any
   index : number = 0
 
-  constructor(private common : CommonService, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(private dialogRef : MatDialogRef<DialogComponent>, private common : CommonService, @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit(): void {
@@ -44,15 +44,11 @@ export class DialogComponent implements OnInit {
       this.start_time = this.schedule.start_time
       this.end_time = this.schedule.end_time
     }
-    // console.log(this.title)
-    // this.scheduleItemChanged = new Array<boolean>(this.employee.schedules[0].schedule.length).fill(false)
+  
   }
 
   delete() : void {
     this.scheduleChanged = true
-
-    //Remove element from scheduleItemChanged
-    // this.scheduleItemChanged.splice(this.i,1)
 
     this.employee.schedules[0].schedule.splice(this.i,1)
   }
@@ -72,8 +68,21 @@ export class DialogComponent implements OnInit {
     })
   }
 
+  getTimeObject(timeString : string) : any {
+    let spaceI = timeString.indexOf(" ")
+    let date = timeString.substring(0,spaceI)
+    let time = timeString.substring(spaceI + 1)
+    return {date : date, time : time}
+  }
+
+  getEndTime() : any {
+    let spaceI = this.end_time.indexOf(" ")
+    let date = this.end_time.substring(0,spaceI)
+    let time = this.end_time.substring(spaceI + 1)
+    return {date : date, time : time}
+  }
+
   updateScheduleItem() : void {
-    console.log(this.title, this.description, this.start_time, this.end_time)
     if(this.title == "" || this.description == "" || this.start_time == "" || this.end_time == "") {
       
       //Error toast
@@ -84,31 +93,127 @@ export class DialogComponent implements OnInit {
       this.end_time = this.schedule.end_time
       return
     }
+    var dateRegex = /^\d{4}-\d{1,2}-\d{1,2}$/
+    var timeRegex = /^\d{1,2}:\d{2}([ap]m)?$/
+    let st = this.getTimeObject(this.start_time)
+    let et = this.getTimeObject(this.end_time)
+
+    if(!st.date.match(dateRegex) || !st.time.match(timeRegex))
+    {
+      alert("Invalid start time format\nFormat the date as YYYY/MM/DD HH/MM or YYYY/MM/DD H/MM, ex. 2022-02-22 8:15")
+      return
+    }
+
+    if(!et.date.match(dateRegex) || !et.time.match(timeRegex))
+    {
+      alert("Invalid start time format\nFormat the date as YYYY/MM/DD HH/MM or YYYY/MM/DD H/MM, ex. 2022-02-22 8:15")
+      return
+    }
+
+    let b = false
+    console.log(st)
+    console.log(et)
+    this.employee.schedules[0].schedule.forEach((element : any) => {
+      let elst = this.getTimeObject(element.start_time)
+      let elet = this.getTimeObject(element.end_time)
+      if(st.date == elst.date)
+      {
+        //If new item ends in middle of other item
+        if(et.time >= elst.time && elet.time >= et.time)
+        {
+          b = true
+        }
+
+        //If new item starts in middle of other item
+        if(elst.time <= st.time && st.time <= elet.time)
+        {
+          b = true
+        }
+      }
+    });
+
+    if(b) {
+      
+      alert("Overlapping schedule items!")
+      return
+    }
+
+    let item = {
+      title: this.title,
+      description: this.description,
+      start_time: this.start_time,
+      end_time: this.end_time
+    }
 
     //Check if adding item or editing item
-    if(this.schedule == null) {
-      //Adding new item
-      let item = {
-        title: this.title,
-        description: this.description,
-        start_time: this.start_time,
-        end_time: this.end_time
-      }
+    if(this.schedule == null) {     
 
       //Add to employee.schedules on database passing this.id and item to common service
       this.common.addScheduleItem(this.id, item)
     }
     //Change item locally in employee object and in dataService.user
 
-    //Commit schedule to database
-
     //Set to unedited
     // this.scheduleItemChanged[this.i] = false
+
+    this.dialogRef.close({data : item});
   }
 
   updateSchedule() : void {
-    alert("here")
+    if(this.title == "" || this.description == "" || this.start_time == "" || this.end_time == "") {
+      
+      //Error toast
+      alert("Fields cannot be empty")
+      this.title = this.schedule.title
+      this.description = this.schedule.description
+      this.start_time = this.schedule.start_time
+      this.end_time = this.schedule.end_time
+      return
+    }
+    var dateRegex = /^\d{4}-\d{1,2}-\d{1,2}$/
+    var timeRegex = /^\d{1,2}:\d{2}([ap]m)?$/
+    let st = this.getTimeObject(this.start_time)
+    let et = this.getTimeObject(this.end_time)
 
+    if(!st.date.match(dateRegex) || !st.time.match(timeRegex))
+    {
+      alert("Invalid start time format\nFormat the date as YYYY/MM/DD HH/MM or YYYY/MM/DD H/MM, ex. 2022-02-22 8:15")
+      return
+    }
+
+    if(!et.date.match(dateRegex) || !et.time.match(timeRegex))
+    {
+      alert("Invalid start time format\nFormat the date as YYYY/MM/DD HH/MM or YYYY/MM/DD H/MM, ex. 2022-02-22 8:15")
+      return
+    }
+
+    let b = false
+    console.log(st)
+    console.log(et)
+    this.employee.schedules[0].schedule.forEach((element : any) => {
+      let elst = this.getTimeObject(element.start_time)
+      let elet = this.getTimeObject(element.end_time)
+      if(st.date == elst.date)
+      {
+        //If new item ends in middle of other item
+        if(et.time >= elst.time && elet.time >= et.time)
+        {
+          b = true
+        }
+
+        //If new item starts in middle of other item
+        if(elst.time <= st.time && st.time <= elet.time)
+        {
+          b = true
+        }
+      }
+    });
+
+    if(b) {
+      
+      alert("Overlapping schedule items!")
+      return
+    }
     //Change locally in employee and in dataService.user
     // this.employee.schedules[0].schedule.splice(this.index, 1)
     console.log(this.index)
@@ -119,22 +224,26 @@ export class DialogComponent implements OnInit {
 
     console.log(this.employee)
 
+    
+
     //Commit schedule to database
     this.common.updateSchedule(this.employee)
 
     //Set to unedited
     this.scheduleChanged = false
+    
+    let item = {
+      title: this.title,
+      description: this.description,
+      start_time: this.start_time,
+      end_time: this.end_time
+    }
+
+    this.dialogRef.close({data : item});
   }
 
   edit() : void {
     this.scheduleChanged = true
-    // console.log("Editing item: ", this.i)
   }
-
-  //Add confirmation popup
-
-  //Add toast
-
-  //Add loading
 
 }

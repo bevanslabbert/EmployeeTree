@@ -6,6 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,10 @@ import { FormsModule } from '@angular/forms';
     MatChipsModule,
     MatIconModule,
     MatCardModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    
   ]
 })
 export class DialogModule { }

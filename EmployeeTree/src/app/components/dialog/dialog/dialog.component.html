@@ -27,6 +27,9 @@
     <label class="label">Description</label><br>
     <input [(ngModel)]="description" value="{{schedule.description}}" (change)="edit()"><br>
     <!-- <h4></h4> -->
+    <!-- <input matInput [matDatepicker]="picker"> -->
+    <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+    <!-- <mat-datepicker #picker></mat-datepicker> -->
     <label class="label">Start Time</label><br>
     <input [(ngModel)]="start_time" value="{{schedule.start_time}}" (change)="edit()"><br>
     <label class="label">End Time</label><br>
