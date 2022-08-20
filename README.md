@@ -26,3 +26,4 @@ The project is developed according to the structure of an n-tier, model view con
 - Run `npm install` to install all dependencies required to run the application.
 - Run `npm run start` to serve the application on localhost:4200.
 - Open your browser to `http://localhost:4200`
+- Use the credentials 
