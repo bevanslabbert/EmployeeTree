@@ -24,5 +24,5 @@ The project is developed according to the structure of an n-tier, model view con
 - Clone this repository.
 - Navigate to the EmployeeTree directory in this repository.
 - Run `npm install` to install all dependencies required to run the application.
-- Run `npm run start` to server the application on localhost:4200.
+- Run `npm run start` to serve the application on localhost:4200.
 - Open your browser to `http://localhost:4200`
