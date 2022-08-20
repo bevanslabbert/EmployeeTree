@@ -45,36 +45,5 @@ export class HierarchyComponent implements OnInit {
   select(node : EmployeeNode) : void{
     this.selectedNode = node
   }
-
-  // openBottomSheet(node : EmployeeNode): void {
-  //   // this.bottomSheet.setNode(node)
-  //   this._bottomSheet.open(BottomSheet);
-  // }
-
-  
 }
 
-// @Component({
-//   selector: 'bottom-sheet',
-//   templateUrl: 'bottom-sheet.html',
-// })
-
-// export class BottomSheet {
-  
-//   selectedNode : EmployeeNode = {} as EmployeeNode
-
-//   constructor(private _bottomSheetRef: MatBottomSheetRef<SheetComponent>) {}
-
-//   ngOnInit(): void {
-      
-//   }
-
-//   click(event: MouseEvent): void {
-//     this._bottomSheetRef.dismiss();
-//     event.preventDefault();
-//   }
-
-//   setNode(node : EmployeeNode) {
-//     this.selectedNode = node
-//   }
-// }

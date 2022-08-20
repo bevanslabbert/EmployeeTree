@@ -33,7 +33,7 @@ export class DialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.data)
+    // console.log(this.data)
     this.employee = this.data.employee
     this.index = this.data.index
     this.schedule = this.data.dataKey
@@ -68,17 +68,13 @@ export class DialogComponent implements OnInit {
     })
   }
 
+  //Returns comparable values of date and time
   getTimeObject(timeString : string) : any {
     let spaceI = timeString.indexOf(" ")
     let date = timeString.substring(0,spaceI)
     let time = timeString.substring(spaceI + 1)
-    return {date : date, time : time}
-  }
-
-  getEndTime() : any {
-    let spaceI = this.end_time.indexOf(" ")
-    let date = this.end_time.substring(0,spaceI)
-    let time = this.end_time.substring(spaceI + 1)
+    if(time.charAt(0) === "0")
+      time = time.substring(1)
     return {date : date, time : time}
   }
 
@@ -111,8 +107,8 @@ export class DialogComponent implements OnInit {
     }
 
     let b = false
-    console.log(st)
-    console.log(et)
+    // console.log(st)
+    // console.log(et)
     this.employee.schedules[0].schedule.forEach((element : any) => {
       let elst = this.getTimeObject(element.start_time)
       let elet = this.getTimeObject(element.end_time)
@@ -175,6 +171,13 @@ export class DialogComponent implements OnInit {
     let st = this.getTimeObject(this.start_time)
     let et = this.getTimeObject(this.end_time)
 
+    if(st.time.charAt(0) === "0")
+      st.time = st.time.substring(1)
+
+    if(et.time.charAt(0) === "0")
+      et.time = et.time.substring(1)
+
+    // console.log(st)
     if(!st.date.match(dateRegex) || !st.time.match(timeRegex))
     {
       alert("Invalid start time format\nFormat the date as YYYY/MM/DD HH/MM or YYYY/MM/DD H/MM, ex. 2022-02-22 8:15")
@@ -188,23 +191,27 @@ export class DialogComponent implements OnInit {
     }
 
     let b = false
-    console.log(st)
-    console.log(et)
+    // console.log(st)
+    // console.log(et)
     this.employee.schedules[0].schedule.forEach((element : any) => {
-      let elst = this.getTimeObject(element.start_time)
-      let elet = this.getTimeObject(element.end_time)
-      if(st.date == elst.date)
-      {
-        //If new item ends in middle of other item
-        if(et.time >= elst.time && elet.time >= et.time)
-        {
-          b = true
-        }
+      if(this.employee.schedules[0].schedule.indexOf(element) != this.index) {
 
-        //If new item starts in middle of other item
-        if(elst.time <= st.time && st.time <= elet.time)
+        let elst = this.getTimeObject(element.start_time)
+        let elet = this.getTimeObject(element.end_time)
+        
+        if(st.date == elst.date)
         {
-          b = true
+          //If new item ends in middle of other item
+          if(et.time >= elst.time && elet.time >= et.time)
+          {
+            b = true
+          }
+
+          //If new item starts in middle of other item
+          if(elst.time <= st.time && st.time <= elet.time)
+          {
+            b = true
+          }
         }
       }
     });
@@ -216,13 +223,13 @@ export class DialogComponent implements OnInit {
     }
     //Change locally in employee and in dataService.user
     // this.employee.schedules[0].schedule.splice(this.index, 1)
-    console.log(this.index)
+    // console.log(this.index)
     this.employee.schedules[0].schedule[this.index].title = this.title
     this.employee.schedules[0].schedule[this.index].description = this.description
     this.employee.schedules[0].schedule[this.index].start_time = this.start_time
     this.employee.schedules[0].schedule[this.index].end_time = this.end_time
 
-    console.log(this.employee)
+    // console.log(this.employee)
 
     
 

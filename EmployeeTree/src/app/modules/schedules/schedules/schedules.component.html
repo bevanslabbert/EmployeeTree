@@ -1,5 +1,8 @@
 <body>
+  <div class="titles">
     <div class="title">select an employee to manage their <p class="blue-text">schedule</p></div>
+    <div class="employee">{{selectedNode.first_name}} {{selectedNode.surname}}</div>
+  </div>
     <div id="content">
     <div id="tree">
         <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">

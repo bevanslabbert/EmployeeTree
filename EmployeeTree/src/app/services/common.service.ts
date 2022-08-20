@@ -28,7 +28,7 @@ export class CommonService {
 
       //Get children recursively
       this.getChildren(this.user.children)
-      console.log(this.user)
+      // console.log(this.user)
       
       //get schedule of logged in user
       this.http.post('http://127.0.0.1:3000/api/schedulesById',
@@ -111,7 +111,7 @@ export class CommonService {
   }
 
   updateSchedule(node : any) : void {
-    console.log("Updating" + node.title)
+    // console.log("Updating" + node.title)
     this.http.post('http://127.0.0.1:3000/api/updateSchedule',
     {
       employee : node

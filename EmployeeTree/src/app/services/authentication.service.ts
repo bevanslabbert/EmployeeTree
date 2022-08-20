@@ -34,7 +34,7 @@ export class AuthenticationService {
         localStorage.setItem("token", this.user.username)
 
         this.commonService.setUser(this.user)
-        console.log(this.user)
+        // console.log(this.user)
         this.user = null
 
         //Fetch all employees that work for this.user

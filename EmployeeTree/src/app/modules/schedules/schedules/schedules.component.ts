@@ -66,11 +66,11 @@ export class SchedulesComponent implements OnInit {
         alert("Item updated successfully")
       }
       else {
-        console.log(this.selectedNode.schedules[0].schedule)
+        // console.log(this.selectedNode.schedules[0].schedule)
         this.selectedNode.schedules[0].schedule.push(result.data)
         alert("Item created successfully")
       }
-      console.log(result);
+      // console.log(result);
     });
   }
 
