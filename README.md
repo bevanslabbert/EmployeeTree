@@ -30,9 +30,32 @@ The project is developed according to the structure of an n-tier, model view con
   `username: knopel`
   `password: jjsdiner`
   
-# Screenshots
+# Login
 
+This is the first screen users see when accessing the application.
+Users log in with a username and password. The password is compared to the stored password if the username exists in the registed_users collection. The password is hashed using bcrypt (based on the Blowfish cipher) and compared to the stored password that is also hashed with bcrypt (stored passwords are also salted). If the passwords match, the user is logged in and redirected to the home page.
+
+![login](https://github.com/bevanslabbert/EmployeeTree/blob/main/login.jpg?raw=true)
+
+# Home
+
+From here, users can navigate to other pages.
+![home](https://github.com/bevanslabbert/EmployeeTree/blob/main/home.jpg?raw=true)
+
+# Hierarchy
+
+On this page users can view the employees that report to them and their schedules. Clicking on a user shows their schedule on the right (by default, the logged in user's schedule is displayed).
+![home](https://github.com/bevanslabbert/EmployeeTree/blob/main/home.jpg?raw=true)
+
+# Schedules
+
+Logged in users can edit the schedules of the employees that report to them, as well as their own. 
+Schedules can be updated, added or removed.
+The start time and end time fields are validated using regex to match the correct format.
+Fields can not be empty when updating or creating an item.
+Confirmation is required when deleting an item.
+![home](https://github.com/bevanslabbert/EmployeeTree/blob/main/home.jpg?raw=true)
   
-  
+
   
 
