@@ -40,12 +40,14 @@ Users log in with a username and password. The password is compared to the store
 # Home
 
 From here, users can navigate to other pages.
+
 ![home](https://github.com/bevanslabbert/EmployeeTree/blob/main/home.png?raw=true)
 
 # Hierarchy
 
 On this page users can view the employees that report to them and their schedules. Clicking on a user shows their schedule on the right (by default, the logged in user's schedule is displayed).
-![home](https://github.com/bevanslabbert/EmployeeTree/blob/main/home.png?raw=true)
+
+![hierarchy](https://github.com/bevanslabbert/EmployeeTree/blob/main/hierarchy.png?raw=true)
 
 # Schedules
 
@@ -54,7 +56,12 @@ Schedules can be updated, added or removed.
 The start time and end time fields are validated using regex to match the correct format.
 Fields can not be empty when updating or creating an item.
 Confirmation is required when deleting an item.
-![home](https://github.com/bevanslabbert/EmployeeTree/blob/main/home.png?raw=true)
+
+![schedules](https://github.com/bevanslabbert/EmployeeTree/blob/main/schedules.png?raw=true)
+
+This is what the user sees when they want to update or create a schedule item. Initially the "apply" button is inactive. It only becomes active when a change to the schedule item is detected.
+
+![schedules_edit](https://github.com/bevanslabbert/EmployeeTree/blob/main/schedules_edit.png?raw=true)
   
 
   
