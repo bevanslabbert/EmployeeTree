@@ -53,13 +53,14 @@ On this page users can view the employees that report to them and their schedule
 
 Logged in users can edit the schedules of the employees that report to them, as well as their own. 
 Schedules can be updated, added or removed.
-The start time and end time fields are validated using regex to match the correct format.
-Fields can not be empty when updating or creating an item.
-Confirmation is required when deleting an item.
 
 ![schedules](https://github.com/bevanslabbert/EmployeeTree/blob/main/schedules.png?raw=true)
 
 This is what the user sees when they want to update or create a schedule item. Initially the "apply" button is inactive. It only becomes active when a change to the schedule item is detected.
+A schedule item cannot overlap with another schedule item.
+The start time and end time fields are validated using regex to match the correct format (YYYY-MM-DD HH:MM).
+Fields can not be empty when updating or creating an item.
+Confirmation is required when deleting an item.
 
 ![schedule_edit](https://github.com/bevanslabbert/EmployeeTree/blob/main/schedule_edit.png?raw=true)
   
