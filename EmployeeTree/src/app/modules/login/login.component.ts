@@ -19,10 +19,7 @@ export class LoginComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private router: Router
   ) { }
-
-  ngOnInit(): void {
-  }
-
+  
   async login() {
     let username = this.username;
     let password = this.password;
