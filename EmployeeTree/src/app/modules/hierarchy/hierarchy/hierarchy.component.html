@@ -45,12 +45,12 @@
           </mat-tree>
         </div>
         
-          <div id = "schedule">
-            <mat-list role="list">
-              <span class="schedule_item">
-                <mat-list-item role="listitem" *ngFor="let s of selectedNode.schedules[0].schedule"><p id="bold">{{s.title}}</p><p class="time">{{s.start_time}} - {{s.end_time}}</p><p class="description">{{s.description}}</p></mat-list-item>
-              </span>
-              </mat-list>
-          </div>
+      <div id = "schedule">
+        <mat-list role="list">
+          <span class="schedule_item">
+            <mat-list-item role="listitem" *ngFor="let s of selectedNode.schedules[0].schedule"><p id="bold">{{s.title}}</p><p class="time">{{s.start_time}} - {{s.end_time}}</p><p class="description">{{s.description}}</p></mat-list-item>
+          </span>
+          </mat-list>
+      </div>
       </div>
 </body>
